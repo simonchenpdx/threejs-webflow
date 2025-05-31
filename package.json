@@ -1,0 +1,32 @@
+{
+	"name": "webflow-js-template",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"vite": "^6.3.5"
+	},
+	"main": "vite.config.js",
+	"dependencies": {
+		"@splinetool/loader": "^1.9.98",
+		"@splinetool/react-spline": "^4.0.0",
+		"@splinetool/runtime": "^1.9.98",
+		"@splinetool/viewer": "^1.9.98",
+		"esbuild": "^0.25.5",
+		"fdir": "^6.4.5",
+		"nanoid": "^3.3.11",
+		"picocolors": "^1.1.1",
+		"picomatch": "^4.0.2",
+		"postcss": "^8.5.4",
+		"rollup": "^4.41.1",
+		"source-map-js": "^1.2.1",
+		"three": "0.149.0",
+		"tinyglobby": "^0.2.14"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}
