@@ -149,8 +149,8 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 }
 
 initSplineScene(".home_intro_illustration-container-spline", isMobile ? {
-  rotateY: 0.003,
-   rotateZ: 0.002,
+  rotateY: -0.002,
+  oscillateY: { amplitude: 10, frequency: 2 },
   
 } : {
   rotateY: 0.003,
