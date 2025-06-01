@@ -105,8 +105,16 @@ renderer.setSize(width, height);
 
   window.addEventListener("resize", onResize);
 
+  let lastFrameTime = 0;
+const maxFPS = isMobile ? 24 : 60;
+
+
   function animate(time) {
     requestAnimationFrame(animate);
+
+  const delta = time - lastFrameTime;
+  if (delta < 1000 / maxFPS) return;
+  lastFrameTime = time;
 
     if (splineSceneRoot) {
       if (config.rotateY) splineSceneRoot.rotation.y += config.rotateY;
@@ -133,6 +141,7 @@ renderer.setSize(width, height);
 
 initSplineScene(".home_intro_illustration-container-spline", isMobile ? {
   rotateY: 0.003,
+   rotateZ: 0.002,
   
 } : {
   rotateY: 0.003,
