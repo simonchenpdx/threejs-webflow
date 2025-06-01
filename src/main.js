@@ -109,34 +109,43 @@ renderer.setSize(width, height);
 const maxFPS = isMobile ? 24 : 60;
 
 
-  function animate(time) {
-    requestAnimationFrame(animate);
+function updateFrame(time) {
+  if (splineSceneRoot) {
+    if (config.rotateY) splineSceneRoot.rotation.y += config.rotateY;
+    if (config.rotateZ) splineSceneRoot.rotation.z += config.rotateZ;
 
-  const delta = time - lastFrameTime;
-  if (delta < 1000 / maxFPS) return;
-  lastFrameTime = time;
-
-    if (splineSceneRoot) {
-      if (config.rotateY) splineSceneRoot.rotation.y += config.rotateY;
-      if (config.rotateZ) splineSceneRoot.rotation.z += config.rotateZ;
-
-      if (config.oscillateY) {
-        const amp = config.oscillateY.amplitude ?? 10;
-        const freq = config.oscillateY.frequency ?? 1;
-        const baseY = splineSceneRoot.userData.originalPosition.y;
-        splineSceneRoot.position.y =
-          baseY + Math.sin(time * 0.001 * freq) * amp;
-      }
-
-      if (typeof config.onUpdate === "function") {
-        config.onUpdate(splineSceneRoot, time);
-      }
+    if (config.oscillateY) {
+      const amp = config.oscillateY.amplitude ?? 10;
+      const freq = config.oscillateY.frequency ?? 1;
+      const baseY = splineSceneRoot.userData.originalPosition.y;
+      splineSceneRoot.position.y =
+        baseY + Math.sin(time * 0.001 * freq) * amp;
     }
 
-    renderer.render(scene, camera);
+    if (typeof config.onUpdate === "function") {
+      config.onUpdate(splineSceneRoot, time);
+    }
   }
 
+  renderer.render(scene, camera);
+}
+
+if (isMobile && containerSelector === ".home_intro_illustration-container-spline") {
+  // Mobile-only throttled version for the intro scene
+  setInterval(() => {
+    const now = performance.now();
+    updateFrame(now);
+  }, 1000 / maxFPS);
+} else {
+  // Normal RAF loop
+  function animate(time) {
+    requestAnimationFrame(animate);
+    updateFrame(time);
+  }
   animate();
+}
+
+
 }
 
 initSplineScene(".home_intro_illustration-container-spline", isMobile ? {
