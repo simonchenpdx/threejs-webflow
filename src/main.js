@@ -45,7 +45,7 @@ function initSplineScene(containerSelector, config = {}) {
 
   const renderer = new THREE.WebGLRenderer({
     alpha:true,
-    antialians: !isMobile, // disable antialiasing on mobile
+    antialias: !isMobile, // disable antialiasing on mobile
   });
   
 
