@@ -132,8 +132,8 @@ renderer.setSize(width, height);
 }
 
 initSplineScene(".home_intro_illustration-container-spline", isMobile ? {
-  rotateY: 0.001,
-  rotateZ: 0.001,
+  rotateY: 0.003,
+  
 } : {
   rotateY: 0.003,
   rotateZ: 0.002,
