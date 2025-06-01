@@ -148,30 +148,33 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 
 }
 
-initSplineScene(".home_intro_illustration-container-spline", isMobile ? {
-  rotateY: -0.002,
-  oscillateY: { amplitude: 10, frequency: 2 },
-  
-} : {
-  rotateY: 0.003,
-  rotateZ: 0.002,
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    initSplineScene(".home_intro_illustration-container-spline", {
+      rotateY: 0.003,
+      rotateZ: 0.002,
+    });
+  }, 300); // wait for reflows & layout to stabilize
 });
 
-// initSplineScene(".pipe-spline-testimony", {
-//   oscillateY: { amplitude: 20, frequency: 0.5 },
-// });
 
-// initSplineScene(".footer_spline-container", {
-// rotateY: 0.003,
-//   rotateZ: 0.002,
 
-// });
 
-// initSplineScene(".navbar_mobile_spline", {
-//   scale: 1.2,
-//   onUpdate: (obj, t) => {
-//     obj.rotation.x = Math.sin(t * 0.001) * 0.2;
-//     obj.position.z = Math.cos(t * 0.001) * 20;
-//   },
-// });
+initSplineScene(".pipe-spline-testimony", {
+  oscillateY: { amplitude: 20, frequency: 0.5 },
+});
+
+initSplineScene(".footer_spline-container", {
+rotateY: 0.003,
+  rotateZ: 0.002,
+
+});
+
+initSplineScene(".navbar_mobile_spline", {
+  scale: 1.2,
+  onUpdate: (obj, t) => {
+    obj.rotation.x = Math.sin(t * 0.001) * 0.2;
+    obj.position.z = Math.cos(t * 0.001) * 20;
+  },
+});
 
