@@ -16,6 +16,9 @@ const loader = new SplineLoader();
 const SPLINE_URL =
   "https://prod.spline.design/6ZAqsfiqjVgQ-pUq/scene.splinecode";
 
+
+const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
 // Reusable scene initializer
 function initSplineScene(containerSelector, config = {}) {
   const container = document.querySelector(containerSelector);
@@ -39,8 +42,19 @@ function initSplineScene(containerSelector, config = {}) {
   camera.quaternion.setFromEuler(new THREE.Euler(-0.79, 0.62, 0.52));
 
   const scene = new THREE.Scene();
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(width, height);
+
+  const renderer = new THREE.WebGLRenderer({
+    alpha:true,
+    antialians: !isMobile, // disable antialiasing on mobile
+  });
+  
+
+  const pixelRatio = isMobile ? 1 : window.devicePixelRatio;
+
+
+ 
+renderer.setPixelRatio(pixelRatio);
+renderer.setSize(width, height);
   renderer.setClearAlpha(0);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
