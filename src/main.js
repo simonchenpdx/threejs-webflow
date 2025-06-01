@@ -106,7 +106,7 @@ renderer.setSize(width, height);
   window.addEventListener("resize", onResize);
 
   let lastFrameTime = 0;
-const maxFPS = isMobile ? 24 : 60;
+const maxFPS = isMobile ? 60 : 60;
 
 
 function updateFrame(time) {
