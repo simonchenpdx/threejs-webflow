@@ -27,8 +27,8 @@ function initSplineScene(containerSelector, config = {}) {
     return;
   }
 
-  const width = container.clientWidth;
-  const height = container.clientHeight;
+  const width = container.clientWidth * 0.9;
+  const height = container.clientHeight *0.9; 
 
   const camera = new THREE.OrthographicCamera(
     width / -2,
@@ -49,7 +49,7 @@ function initSplineScene(containerSelector, config = {}) {
   });
   
 
-  const pixelRatio = isMobile ? 1 : window.devicePixelRatio;
+  const pixelRatio = isMobile ? 0.75 : window.devicePixelRatio;
 
 
  
