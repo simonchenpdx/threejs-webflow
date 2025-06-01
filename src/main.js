@@ -106,7 +106,7 @@ renderer.setSize(width, height);
   window.addEventListener("resize", onResize);
 
   let lastFrameTime = 0;
-const maxFPS = isMobile ? 60 : 60;
+const maxFPS = isMobile ? 24 : 60;
 
 
 function updateFrame(time) {
@@ -148,14 +148,27 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    initSplineScene(".home_intro_illustration-container-spline", {
-      rotateY: 0.003,
-      rotateZ: 0.002,
+// Only run this if IntersectionObserver is supported (almost all modern browsers)
+if ('IntersectionObserver' in window) {
+  const target = document.querySelector(".home_intro_illustration-container-spline");
+
+  if (target) {
+    const observer = new IntersectionObserver((entries, observer) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        initSplineScene(".home_intro_illustration-container-spline", {
+          rotateY: 0.003,
+          rotateZ: 0.002,
+        });
+        observer.disconnect(); // Stop observing after it loads once
+      }
+    }, {
+      threshold: 0.1, // Trigger when at least 10% of the element is visible
     });
-  }, 300); // wait for reflows & layout to stabilize
-});
+
+    observer.observe(target);
+  }
+}
 
 
 
