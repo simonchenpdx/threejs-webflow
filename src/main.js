@@ -131,11 +131,18 @@ function updateFrame(time) {
 }
 
 if (isMobile && containerSelector === ".home_intro_illustration-container-spline") {
-  // Mobile-only throttled version for the intro scene
-  setInterval(() => {
-    const now = performance.now();
-    updateFrame(now);
-  }, 1000 / maxFPS);
+  // // Mobile-only throttled version for the intro scene
+  // setInterval(() => {
+  //   const now = performance.now();
+  //   updateFrame(now);
+  // }, 1000 / maxFPS);
+
+    // Normal RAF loop
+  function animate(time) {
+    requestAnimationFrame(animate);
+    updateFrame(time);
+  }
+  animate();
 } else {
   // Normal RAF loop
   function animate(time) {
