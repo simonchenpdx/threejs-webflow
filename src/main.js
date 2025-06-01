@@ -56,7 +56,8 @@ function initSplineScene(containerSelector, config = {}) {
 renderer.setPixelRatio(pixelRatio);
 renderer.setSize(width, height);
   renderer.setClearAlpha(0);
-  renderer.shadowMap.enabled = true;
+  // renderer.shadowMap.enabled = true;
+  renderer.shadowMap.enabled = !isMobile;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   container.appendChild(renderer.domElement);
 
@@ -130,7 +131,10 @@ renderer.setSize(width, height);
   animate();
 }
 
-initSplineScene(".home_intro_illustration-container-spline", {
+initSplineScene(".home_intro_illustration-container-spline", isMobile ? {
+  rotateY: 0.001,
+  rotateZ: 0.001,
+} : {
   rotateY: 0.003,
   rotateZ: 0.002,
 });
