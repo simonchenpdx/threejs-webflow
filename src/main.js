@@ -156,27 +156,26 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 }
 
 // Only run this if IntersectionObserver is supported (almost all modern browsers)
-if ('IntersectionObserver' in window) {
-  const target = document.querySelector(".home_intro_illustration-container-spline");
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const target = document.querySelector(".home_intro_illustration-container-spline");
+    if (target) {
+      const observer = new IntersectionObserver((entries, observer) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          initSplineScene(".home_intro_illustration-container-spline", {
+            rotateY: 0.003,
+            rotateZ: 0.002,
+          });
+          observer.disconnect();
+        }
+      }, { threshold: 0.1 });
 
-  if (target) {
-    const observer = new IntersectionObserver((entries, observer) => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        alert('spline loaded');
-        initSplineScene(".home_intro_illustration-container-spline", {
-          rotateY: 0.003,
-          rotateZ: 0.002,
-        });
-        observer.disconnect(); // Stop observing after it loads once
-      }
-    }, {
-      threshold: 0.1, // Trigger when at least 10% of the element is visible
-    });
+      observer.observe(target);
+    }
+  }, 1000); // Delay observing by ~1 second after full page load
+});
 
-    observer.observe(target);
-  }
-}
 
 
 
