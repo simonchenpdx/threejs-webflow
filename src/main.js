@@ -18,7 +18,7 @@ const SPLINE_URL =
 
 
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-alert(isMobile);
+
 
 // Reusable scene initializer
 function initSplineScene(containerSelector, config = {}) {
@@ -133,17 +133,17 @@ function updateFrame(time) {
 
 if (isMobile && containerSelector === ".home_intro_illustration-container-spline") {
   // // Mobile-only throttled version for the intro scene
-  setInterval(() => {
-    const now = performance.now();
-    updateFrame(now);
-  }, 1000 / maxFPS);
+  // setInterval(() => {
+  //   const now = performance.now();
+  //   updateFrame(now);
+  // }, 1000 / maxFPS);
 
     // Normal RAF loop
-  // function animate(time) {
-  //   requestAnimationFrame(animate);
-  //   updateFrame(time);
-  // }
-  // animate();
+  function animate(time) {
+    requestAnimationFrame(animate);
+    updateFrame(time);
+  }
+  animate();
 } else {
   // Normal RAF loop
   function animate(time) {
