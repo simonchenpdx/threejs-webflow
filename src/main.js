@@ -27,8 +27,7 @@ function initSplineScene(containerSelector, config = {}) {
     return;
   }
 
-  const width = container.clientWidth * 0.9;
-  const height = container.clientHeight *0.9; 
+ 
 
   const camera = new THREE.OrthographicCamera(
     width / -2,
@@ -163,6 +162,7 @@ if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
+          alert("SPLINE LOADED");
         initSplineScene(".home_intro_illustration-container-spline", {
           rotateY: 0.003,
           rotateZ: 0.002,
