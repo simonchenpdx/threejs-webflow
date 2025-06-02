@@ -156,9 +156,8 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 
 }
 
-// Only run this if IntersectionObserver is supported (almost all modern browsers)
 window.addEventListener("load", () => {
-  setTimeout(() => {
+  requestIdleCallback(() => {
     const target = document.querySelector(".home_intro_illustration-container-spline");
     if (target) {
       const observer = new IntersectionObserver((entries, observer) => {
@@ -174,10 +173,8 @@ window.addEventListener("load", () => {
 
       observer.observe(target);
     }
-  }, 1000); // Delay observing by ~1 second after full page load
+  });
 });
-
-
 
 
 
