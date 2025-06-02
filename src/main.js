@@ -164,8 +164,9 @@ window.addEventListener("load", () => {
         const entry = entries[0];
         if (entry.isIntersecting) {
           initSplineScene(".home_intro_illustration-container-spline", {
-            rotateY: 0.003,
-            rotateZ: 0.002,
+            // rotateY: 0.003,
+            // rotateZ: 0.002,
+            oscillateY: { amplitude: 20, frequency: 0.5 },
           });
           observer.disconnect();
         }
