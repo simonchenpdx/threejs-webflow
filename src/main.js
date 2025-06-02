@@ -18,6 +18,7 @@ const SPLINE_URL =
 
 
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+alert(isMobile);
 
 // Reusable scene initializer
 function initSplineScene(containerSelector, config = {}) {
@@ -49,7 +50,7 @@ function initSplineScene(containerSelector, config = {}) {
   });
   
 
-  const pixelRatio = isMobile ? 0.75 : window.devicePixelRatio;
+  const pixelRatio = isMobile ? 0.5 : window.devicePixelRatio;
 
 
  
