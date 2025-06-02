@@ -56,7 +56,8 @@ function initSplineScene(containerSelector, config = {}) {
  
 renderer.setPixelRatio(pixelRatio);
 renderer.setSize(width, height);
-  renderer.setClearAlpha(0);
+  // renderer.setClearAlpha(0);
+  renderer.setClearColor(0x000000, 1);
   // renderer.shadowMap.enabled = true;
   renderer.shadowMap.enabled = !isMobile;
   renderer.shadowMap.type = THREE.PCFShadowMap;
