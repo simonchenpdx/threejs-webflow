@@ -50,7 +50,7 @@ function initSplineScene(containerSelector, config = {}) {
   });
   
 
-  const pixelRatio = isMobile ? 0.5 : window.devicePixelRatio;
+  const pixelRatio = isMobile ? 1 : window.devicePixelRatio;
 
 
  
