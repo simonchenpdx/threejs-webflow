@@ -13,10 +13,13 @@ console.log(SplineLoader);
 
 // Shared SplineLoader instance
 const loader = new SplineLoader();
-const SPLINE_URL =
-  "https://prod.spline.design/6ZAqsfiqjVgQ-pUq/scene.splinecode";
 
-console.log('test passed');``
+// const SPLINE_URL =
+//   "https://prod.spline.design/6ZAqsfiqjVgQ-pUq/scene.splinecode";
+
+const SPLINE_URL = "/pipe-scene.splinecode";
+
+console.log('test passed again');``
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 
