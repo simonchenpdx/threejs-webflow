@@ -19,6 +19,7 @@ const loader = new SplineLoader();
 
 const SPLINE_URL = "https://threejs-webflow.netlify.app/pipe-scene.splinecode";
 
+
 console.log('test passed again');``
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
