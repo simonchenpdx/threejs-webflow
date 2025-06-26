@@ -17,7 +17,8 @@ const loader = new SplineLoader();
 // const SPLINE_URL =
 //   "https://prod.spline.design/6ZAqsfiqjVgQ-pUq/scene.splinecode";
 
-const SPLINE_URL = "https://threejs-webflow.netlify.app/pipe-scene.splinecode";
+const SPLINE_URL_PIPE = "https://threejs-webflow.netlify.app/pipe-scene.splinecode";
+const SPLINE_URL_HERO_LEFT = "https://threejs-webflow.netlify.app/threejs_hero_spline_left.splinecode";
 
 
 console.log('test passed again');``
@@ -25,7 +26,7 @@ const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 
 // Reusable scene initializer
-function initSplineScene(containerSelector, config = {}) {
+function initSplineScene(containerSelector, config = {}, splineUrl = SPLINE_URL) {
   const container = document.querySelector(containerSelector);
   if (!container) {
     console.warn(`Container not found: ${containerSelector}`);
@@ -182,16 +183,21 @@ window.addEventListener("load", () => {
 });
 
 
+initSplineScene(".spline-left", {
+  oscillateY: { amplitude: 20, frequency: 0.5 },
+},SPLINE_URL_HERO_LEFT);
+
+
 
 initSplineScene(".pipe-spline-testimony", {
   oscillateY: { amplitude: 20, frequency: 0.5 },
-});
+},SPLINE_URL_PIPE);
 
 initSplineScene(".footer_spline-container", {
 rotateY: 0.003,
   rotateZ: 0.002,
 
-});
+},SPLINE_URL_PIPE);
 
 initSplineScene(".navbar_mobile_spline", {
   scale: 1.2,
@@ -199,5 +205,5 @@ initSplineScene(".navbar_mobile_spline", {
     obj.rotation.x = Math.sin(t * 0.001) * 0.2;
     obj.position.z = Math.cos(t * 0.001) * 20;
   },
-});
+},SPLINE_URL_PIPE);
 
