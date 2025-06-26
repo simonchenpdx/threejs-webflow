@@ -69,7 +69,7 @@ renderer.setSize(width, height);
 
   let splineSceneRoot = null;
 
-  loader.load(SPLINE_URL, (splineScene) => {
+  loader.load(splineUrl, (splineScene) => {
     splineSceneRoot = splineScene;
     scene.add(splineSceneRoot);
 
