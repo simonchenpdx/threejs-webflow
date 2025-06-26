@@ -26,7 +26,7 @@ const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 
 // Reusable scene initializer
-function initSplineScene(containerSelector, config = {}, splineUrl = SPLINE_URL) {
+function initSplineScene(containerSelector, config = {}, splineUrl) {
   const container = document.querySelector(containerSelector);
   if (!container) {
     console.warn(`Container not found: ${containerSelector}`);
