@@ -172,7 +172,7 @@ window.addEventListener("load", () => {
             // rotateY: 0.003,
             // rotateZ: 0.002,
             oscillateY: { amplitude: 20, frequency: 0.5 },
-          });
+          },SPLINE_URL_PIPE);
           observer.disconnect();
         }
       }, { threshold: 0.5 });
@@ -185,7 +185,7 @@ window.addEventListener("load", () => {
 
 initSplineScene(".spline-left", {
   oscillateY: { amplitude: 20, frequency: 0.5 },
-},SPLINE_URL_HERO_LEFT);
+}, SPLINE_URL_HERO_LEFT);
 
 
 
