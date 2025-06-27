@@ -84,7 +84,9 @@ renderer.setSize(width, height);
       (frustumHeight * 0.95) / size.y
     );
 
-    const finalScale = config.scale ?? defaultScale;
+   const finalScale = config.scale
+  ? defaultScale * config.scale  // scale is now a multiplier like 0.9
+  : defaultScale;
     splineSceneRoot.scale.set(finalScale, finalScale, finalScale);
 
     const center = new THREE.Vector3();
@@ -120,13 +122,16 @@ function updateFrame(time) {
     if (config.rotateY) splineSceneRoot.rotation.y += config.rotateY;
     if (config.rotateZ) splineSceneRoot.rotation.z += config.rotateZ;
 
-    if (config.oscillateY) {
-      const amp = config.oscillateY.amplitude ?? 10;
-      const freq = config.oscillateY.frequency ?? 1;
-      const baseY = splineSceneRoot.userData.originalPosition.y;
-      splineSceneRoot.position.y =
-        baseY + Math.sin(time * 0.001 * freq) * amp;
-    }
+if (config.oscillateY) {
+  const amp = config.oscillateY.amplitude ?? 10;
+  const freq = config.oscillateY.frequency ?? 1;
+  const baseY = splineSceneRoot.userData.originalPosition.y;
+  splineSceneRoot.position.y = baseY + Math.sin(time * 0.001 * freq) * amp;
+}
+
+
+
+
 
     if (typeof config.onUpdate === "function") {
       config.onUpdate(splineSceneRoot, time);
@@ -165,23 +170,20 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 });
 
 initSplineScene(".pipe-spline-testimony", {
-  onUpdate: (obj, time) => {
-    const t = time * 0.001;
-    const ampY = 20;
-    const ampZ = 15;
-
-    // Subtle floating up/down
-    obj.position.y = obj.userData.originalPosition.y + Math.sin(t * 0.6) * ampY;
-
-    // Slight push-pull on the Z-axis for depth
-    obj.position.z = obj.userData.originalPosition.z + Math.cos(t * 0.4) * ampZ;
-  },
+  scale: 0.9, // Scale down by 10%
+  oscillateY: {
+    amplitude: 50,     // how far it moves up/down
+    frequency: 0.8     // how fast it moves
+  }
 });
+
+
 
 initSplineScene(".footer_spline-container", {
 rotateY: 0.003,
   rotateZ: 0.002,
 
+  scale: 1
 });
 
 initSplineScene(".navbar_mobile_spline", {
