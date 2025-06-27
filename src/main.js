@@ -20,7 +20,7 @@ const loader = new SplineLoader();
 const SPLINE_URL = "https://threejs-webflow.netlify.app/pipe-scene.splinecode";
 
 
-console.log('test passed again');``
+console.log('test passed again');
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 
@@ -141,16 +141,9 @@ if (config.oscillateY) {
   renderer.render(scene, camera);
 }
 
-if (isMobile && containerSelector === ".home_intro_illustration-container-spline") {
+const isMobileScreen = window.innerWidth <= 767;
 
-    // Normal RAF loop
-  function animate(time) {
-    requestAnimationFrame(animate);
-    updateFrame(time);
-  }
-  animate();
-} else {
-  // Normal RAF loop
+if (!isMobileScreen) {
   function animate(time) {
     requestAnimationFrame(animate);
     updateFrame(time);
@@ -159,38 +152,40 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 }
 
 
+
+}
+
+
+function shouldInitSpline() {
+  return window.innerWidth >= 768 && !isMobile;
 }
 
 
 
- initSplineScene(".home_intro_illustration-container-spline", {
-  rotateX: 0.002,
-  rotateY: 0.003,
-  rotateZ: 0.0015,
-});
+if (shouldInitSpline()) {
+  initSplineScene(".home_intro_illustration-container-spline", {
+    rotateX: 0.002,
+    rotateY: 0.003,
+    rotateZ: 0.0015,
+  });
 
-initSplineScene(".pipe-spline-testimony", {
-  scale: 0.9, // Scale down by 10%
-  oscillateY: {
-    amplitude: 50,     // how far it moves up/down
-    frequency: 0.8     // how fast it moves
-  }
-});
+  initSplineScene(".pipe-spline-testimony", {
+    scale: 0.9,
+    oscillateY: { amplitude: 50, frequency: 0.8 },
+  });
 
+  initSplineScene(".footer_spline-container", {
+    rotateY: 0.003,
+    rotateZ: 0.002,
+    scale: 1,
+  });
 
-
-initSplineScene(".footer_spline-container", {
-rotateY: 0.003,
-  rotateZ: 0.002,
-
-  scale: 1
-});
-
-initSplineScene(".navbar_mobile_spline", {
-  scale: 1.2,
-  onUpdate: (obj, t) => {
-    obj.rotation.x = Math.sin(t * 0.001) * 0.2;
-    obj.position.z = Math.cos(t * 0.001) * 20;
-  },
-});
+  initSplineScene(".navbar_mobile_spline", {
+    scale: 1.2,
+    onUpdate: (obj, t) => {
+      obj.rotation.x = Math.sin(t * 0.001) * 0.2;
+      obj.position.z = Math.cos(t * 0.001) * 20;
+    },
+  });
+}
 
