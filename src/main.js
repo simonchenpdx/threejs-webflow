@@ -17,8 +17,7 @@ const loader = new SplineLoader();
 // const SPLINE_URL =
 //   "https://prod.spline.design/6ZAqsfiqjVgQ-pUq/scene.splinecode";
 
-const SPLINE_URL_PIPE = "https://threejs-webflow.netlify.app/pipe-scene.splinecode";
-const SPLINE_URL_HERO_LEFT = "https://threejs-webflow.netlify.app/threejs_hero_spline_left.splinecode";
+const SPLINE_URL = "https://threejs-webflow.netlify.app/pipe-scene.splinecode";
 
 
 console.log('test passed again');``
@@ -26,7 +25,7 @@ const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 
 
 // Reusable scene initializer
-function initSplineScene(containerSelector, config = {}, splineUrl) {
+function initSplineScene(containerSelector, config = {}) {
   const container = document.querySelector(containerSelector);
   if (!container) {
     console.warn(`Container not found: ${containerSelector}`);
@@ -69,7 +68,7 @@ renderer.setSize(width, height);
 
   let splineSceneRoot = null;
 
-  loader.load(splineUrl, (splineScene) => {
+  loader.load(SPLINE_URL, (splineScene) => {
     splineSceneRoot = splineScene;
     scene.add(splineSceneRoot);
 
@@ -161,43 +160,24 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 
 }
 
-window.addEventListener("load", () => {
-  requestIdleCallback(() => {
-    const target = document.querySelector(".home_intro_illustration-container-spline");
-    if (target) {
-      const observer = new IntersectionObserver((entries, observer) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          initSplineScene(".home_intro_illustration-container-spline", {
+
+
+   initSplineScene(".home_intro_illustration-container-spline", {
             // rotateY: 0.003,
             // rotateZ: 0.002,
             oscillateY: { amplitude: 20, frequency: 0.5 },
-          },SPLINE_URL_PIPE);
-          observer.disconnect();
-        }
-      }, { threshold: 0.5 });
-
-      observer.observe(target);
-    }
-  });
-});
-
-
-initSplineScene(".spline-left", {
-  oscillateY: { amplitude: 20, frequency: 0.5 },
-}, SPLINE_URL_HERO_LEFT);
-
+          });
 
 
 initSplineScene(".pipe-spline-testimony", {
   oscillateY: { amplitude: 20, frequency: 0.5 },
-},SPLINE_URL_PIPE);
+});
 
 initSplineScene(".footer_spline-container", {
 rotateY: 0.003,
   rotateZ: 0.002,
 
-},SPLINE_URL_PIPE);
+});
 
 initSplineScene(".navbar_mobile_spline", {
   scale: 1.2,
@@ -205,5 +185,5 @@ initSplineScene(".navbar_mobile_spline", {
     obj.rotation.x = Math.sin(t * 0.001) * 0.2;
     obj.position.z = Math.cos(t * 0.001) * 20;
   },
-},SPLINE_URL_PIPE);
+});
 
