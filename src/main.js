@@ -116,6 +116,7 @@ const maxFPS = isMobile ? 24 : 60;
 
 function updateFrame(time) {
   if (splineSceneRoot) {
+   if (config.rotateX) splineSceneRoot.rotation.x += config.rotateX;
     if (config.rotateY) splineSceneRoot.rotation.y += config.rotateY;
     if (config.rotateZ) splineSceneRoot.rotation.z += config.rotateZ;
 
@@ -136,11 +137,6 @@ function updateFrame(time) {
 }
 
 if (isMobile && containerSelector === ".home_intro_illustration-container-spline") {
-  // // Mobile-only throttled version for the intro scene
-  // setInterval(() => {
-  //   const now = performance.now();
-  //   updateFrame(now);
-  // }, 1000 / maxFPS);
 
     // Normal RAF loop
   function animate(time) {
@@ -162,12 +158,11 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 
 
 
-   initSplineScene(".home_intro_illustration-container-spline", {
-            // rotateY: 0.003,
-            // rotateZ: 0.002,
-            oscillateY: { amplitude: 20, frequency: 0.5 },
-          });
-
+ initSplineScene(".home_intro_illustration-container-spline", {
+  rotateX: 0.002,
+  rotateY: 0.003,
+  rotateZ: 0.0015,
+});
 
 initSplineScene(".pipe-spline-testimony", {
   oscillateY: { amplitude: 20, frequency: 0.5 },
