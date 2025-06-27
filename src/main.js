@@ -165,7 +165,17 @@ if (isMobile && containerSelector === ".home_intro_illustration-container-spline
 });
 
 initSplineScene(".pipe-spline-testimony", {
-  oscillateY: { amplitude: 20, frequency: 0.5 },
+  onUpdate: (obj, time) => {
+    const t = time * 0.001;
+    const ampY = 20;
+    const ampZ = 15;
+
+    // Subtle floating up/down
+    obj.position.y = obj.userData.originalPosition.y + Math.sin(t * 0.6) * ampY;
+
+    // Slight push-pull on the Z-axis for depth
+    obj.position.z = obj.userData.originalPosition.z + Math.cos(t * 0.4) * ampZ;
+  },
 });
 
 initSplineScene(".footer_spline-container", {
