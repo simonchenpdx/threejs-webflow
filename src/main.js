@@ -163,11 +163,17 @@ function shouldInitSpline() {
 
 
 if (shouldInitSpline()) {
-  initSplineScene(".home_intro_illustration-container-spline", {
+  initSplineScene("[spline='pipe-intro']", {
     rotateX: 0.002,
     rotateY: 0.003,
     rotateZ: 0.0015,
   });
+
+  //   initSplineScene(".home_intro_illustration-container-spline", {
+  //   rotateX: 0.002,
+  //   rotateY: 0.003,
+  //   rotateZ: 0.0015,
+  // });
 
   initSplineScene(".pipe-spline-testimony", {
     scale: 0.9,
