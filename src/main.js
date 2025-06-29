@@ -163,7 +163,7 @@ function shouldInitSpline() {
 
 
 if (shouldInitSpline()) {
-  initSplineScene("[spline='pipe']", {
+  initSplineScene("[spline='pipe-intro']", {
     rotateX: 0.002,
     rotateY: 0.003,
     rotateZ: 0.0015,
