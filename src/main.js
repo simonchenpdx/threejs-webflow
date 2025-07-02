@@ -175,18 +175,18 @@ if (shouldInitSpline()) {
   //   rotateZ: 0.0015,
   // });
 
-  initSplineScene(".pipe-spline-testimony", {
+  initSplineScene("[spline='pipe-testimony']", {
     scale: 0.9,
     oscillateY: { amplitude: 50, frequency: 0.8 },
   });
 
-  initSplineScene(".footer_spline-container", {
+  initSplineScene("[spline='footer']", {
     rotateY: 0.003,
     rotateZ: 0.002,
     scale: 1,
   });
 
-  initSplineScene(".navbar_mobile_spline", {
+  initSplineScene("[spline='pipe-nav']", {
     scale: 1.2,
     onUpdate: (obj, t) => {
       obj.rotation.x = Math.sin(t * 0.001) * 0.2;
